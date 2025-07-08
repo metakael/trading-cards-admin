@@ -1,10 +1,14 @@
 // File: /components/Layout.js
+// Purpose: Corrected layout component with explicit Firebase App initialization.
+// Location: trading-cards-admin/components/Layout.js
 import { getAuth, signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { firebaseApp } from '../lib/firebase'; // Import firebaseApp
 
 export default function Layout({ children }) {
-    const auth = getAuth();
+    // Pass the imported firebaseApp to getAuth() to ensure it's initialized correctly.
+    const auth = getAuth(firebaseApp); 
     const router = useRouter();
 
     const handleLogout = async () => {
